@@ -12,6 +12,8 @@ opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
 
 }
 );
+
+builder.Services.AddCors();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 //removing swagger
 
@@ -28,10 +30,12 @@ var app = builder.Build();
   //  app.UseSwagger();
     //app.UseSwaggerUI();
 //}
+//allows localhost 4200 to run on localhost:5000
 
-app.UseHttpsRedirection();
+app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+//app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 
