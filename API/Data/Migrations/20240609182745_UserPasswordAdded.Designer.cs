@@ -31,7 +31,7 @@ namespace API.Data.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("TEXT");
 
-                    b.Property<byte[]>("paswordSalt")
+                    b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("BLOB");
 
                     b.HasKey("Id");

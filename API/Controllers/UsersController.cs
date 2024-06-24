@@ -1,10 +1,12 @@
 ﻿using System.Drawing;
 using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace API.Controllers;
+namespace API.Controllers
+{
 //commented out 6/9 smackey- 'replaced controllerbase with BaseApicontroller'
 //[ApiController]
 //[Route("api/[controller]")] // /api/users
@@ -19,6 +21,7 @@ public class UsersController : BaseApiController
     _context = context;
 }
 
+[AllowAnonymous]
 [HttpGet]
 public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
 {
@@ -27,6 +30,7 @@ public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
     return users;
 }
 
+[Authorize]
 [HttpGet("{id}")] // /api/users/2
 public async Task<ActionResult<AppUser>> GetUser(int id)
 {
@@ -36,4 +40,4 @@ public async Task<ActionResult<AppUser>> GetUser(int id)
 
 }
 
-
+}
